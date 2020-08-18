@@ -1,0 +1,18 @@
+#enclosure {
+  width:100vw;
+  height:100vh;
+  text-align:center;
+  align-items:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+
+#word {
+  font-size:700%;
+  margin-bottom:40px;
+}
+
+#meaning {
+  font-size:200%;
+}
