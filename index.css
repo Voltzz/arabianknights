@@ -3,9 +3,41 @@
   height:100vh;
   text-align:center;
   align-items:center;
+  display:none;
+  justify-content:center;
+  flex-direction:column;
+}
+
+#picker {
+  width:100vw;
+  height:100vh;
+  text-align:center;
+  align-items:center;
   display:flex;
   justify-content:center;
   flex-direction:column;
+}
+
+.picker-row {
+  text-align:center;
+  align-items:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:row;
+}
+
+.shelf {
+  width:100px;
+  height:100px;
+  margin:10px;
+  text-align:center;
+  align-items:center;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  font-size:200%;
+  font-weight:700;
+  border:1px solid black;
 }
 
 #word {

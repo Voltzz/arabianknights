@@ -4,6 +4,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   </head>
   <body>
+    <div id="picker">
+      <div id="row1" class="picker-row"><div class="shelf" id="allShelf">All</div></div>
+    </div>
     <div id="enclosure">
       <div id="word">
         خرج
@@ -13,6 +16,9 @@
       </div>
     </div>
     <script type="application/javascript">
+    const SHELF_SIZE = 10;
+    const SHELVES_PER_ROW = 5;
+    var offset = 0;
       var db = [
     {word:"مَرَّ", meaning:"he passthrough"},
     {word:"فَيْضٌ", meaning:"flood"},
@@ -224,28 +230,55 @@
     {word:"غاباتٌ", meaning:"forest/jungle"},
 ]
 
-var meaningVisible = false;
-var currPick = Math.floor(Math.random() * db.length);
+// Setup shelves
 
-$("#word").html(db[currPick].word);
-$("#meaning").html(db[currPick].meaning);
+var num_shelves = Math.ceil(db.length() / SHELF_SIZE);
+var row = $("#row1");
+var allPicked = false;
+for(var shelfIdx = 0; shelfIdx < num_shelves; shelfIdx++) {
+  if((shelfIdx+1) % SHELVES_PER_ROW == 0) {
+    $("#picker").append("<div id=\"row"+((shelfIdx+1)/SHELVES_PER_ROW+1)+"\" class=\"picker-row\"></div>");
+    row = $("#row"+((shelfIdx+1)/SHELVES_PER_ROW+1));
+  }
+  $(row).append("<div class=\"shelf\" id=\"shelf"+shelfIdx+"\">"+shelfIdx+"</div>");
+}
 
-$("#enclosure").click(function() {
-    if(!meaningVisible) {
-        $("#meaning").css("visibility", "visible");
-        meaningVisible = true;
-    } else {
-        $("#meaning").css("visibility", "hidden");
-        meaningVisible = false;
-        let randPick = currPick;
-        while(randPick == currPick) {
-            randPick = Math.floor(Math.random() * db.length);
-        }
-        $("#word").html(db[randPick].word);
-        $("#meaning").html(db[randPick].meaning);
-        currPick = randPick;
-    }
-});
+// Instantiate game
+
+function initGame(minPick, maxPick) {
+  $("#enclosure").css("display", "flex");
+
+  var minPick = offset;
+  var maxPick = Math.min(db.length(), offset+SHELF_SIZE)-1;
+
+  if(allPicked) {
+    minPick = 0;
+    maxPick = db.length() - 1;
+  }
+
+  var meaningVisible = false;
+  var currPick = Math.floor(Math.random() * (minPick - maxPick + 1) + minPick);
+
+  $("#word").html(db[currPick].word);
+  $("#meaning").html(db[currPick].meaning);
+
+  $("#enclosure").click(function() {
+      if(!meaningVisible) {
+          $("#meaning").css("visibility", "visible");
+          meaningVisible = true;
+      } else {
+          $("#meaning").css("visibility", "hidden");
+          meaningVisible = false;
+          let randPick = currPick;
+          while(randPick == currPick) {
+              randPick = Math.floor(Math.random() * (minPick - maxPick + 1) + minPick);
+          }
+          $("#word").html(db[randPick].word);
+          $("#meaning").html(db[randPick].meaning);
+          currPick = randPick;
+      }
+  });
+}
     </script>
   </body>
 </html>
