@@ -239,7 +239,7 @@ $("#allShelf").click(function() {
 var num_shelves = Math.ceil(db.length / SHELF_SIZE);
 var row = $("#row1");
 var allPicked = false;
-for(var shelfIdxProper = 0; shelfIdx < num_shelves; shelfIdx++) {
+for(var shelfIdxProper = 0; shelfIdx < num_shelves; shelfIdxProper++) {
   let shelfIdx = shelfIdxProper;
   if((shelfIdx+1) % SHELVES_PER_ROW == 0) {
     $("#picker").append("<div id=\"row"+((shelfIdx+1)/SHELVES_PER_ROW+1)+"\" class=\"picker-row\"></div>");
