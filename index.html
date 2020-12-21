@@ -232,7 +232,7 @@
 
 // Setup shelves
 
-var num_shelves = Math.ceil(db.length() / SHELF_SIZE);
+var num_shelves = Math.ceil(db.length / SHELF_SIZE);
 var row = $("#row1");
 var allPicked = false;
 for(var shelfIdx = 0; shelfIdx < num_shelves; shelfIdx++) {
@@ -249,11 +249,11 @@ function initGame(minPick, maxPick) {
   $("#enclosure").css("display", "flex");
 
   var minPick = offset;
-  var maxPick = Math.min(db.length(), offset+SHELF_SIZE)-1;
+  var maxPick = Math.min(db.length, offset+SHELF_SIZE)-1;
 
   if(allPicked) {
     minPick = 0;
-    maxPick = db.length() - 1;
+    maxPick = db.length - 1;
   }
 
   var meaningVisible = false;
