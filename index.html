@@ -239,7 +239,7 @@ $("#allShelf").click(function() {
 var num_shelves = Math.ceil(db.length / SHELF_SIZE);
 var row = $("#row1");
 var allPicked = false;
-for(var shelfIdxProper = 0; shelfIdx < num_shelves; shelfIdxProper++) {
+for(var shelfIdxProper = 0; shelfIdxProper < num_shelves; shelfIdxProper++) {
   let shelfIdx = shelfIdxProper;
   if((shelfIdx+1) % SHELVES_PER_ROW == 0) {
     $("#picker").append("<div id=\"row"+((shelfIdx+1)/SHELVES_PER_ROW+1)+"\" class=\"picker-row\"></div>");
@@ -257,8 +257,8 @@ for(var shelfIdxProper = 0; shelfIdx < num_shelves; shelfIdxProper++) {
 function initGame(minPick, maxPick) {
   $("#enclosure").css("display", "flex");
 
-  var meaningVisible = false;
-  var currPick = Math.floor(Math.random() * (minPick - maxPick + 1) + minPick);
+  let meaningVisible = false;
+  let currPick = Math.floor(Math.random() * (maxPick - minPick + 1) + minPick);
 
   $("#word").html(db[currPick].word);
   $("#meaning").html(db[currPick].meaning);
