@@ -272,7 +272,7 @@ function initGame(minPick, maxPick) {
           meaningVisible = false;
           let randPick = currPick;
           while(randPick == currPick) {
-              randPick = Math.floor(Math.random() * (minPick - maxPick + 1) + minPick);
+              randPick = Math.floor(Math.random() * (maxPick - minPick + 1) + minPick);
           }
           $("#word").html(db[randPick].word);
           $("#meaning").html(db[randPick].meaning);
